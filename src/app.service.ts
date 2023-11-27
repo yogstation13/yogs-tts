@@ -13,6 +13,10 @@ const execPromise = promisify(exec);
 export class AppService {
   private readonly logger = new Logger(AppService.name);
 
+  getPing(): string {
+    return 'Hello, world!';
+  }
+
   async getTTS(
     model: string,
     pitch: string,
@@ -23,6 +27,7 @@ export class AppService {
       res?.set({
         'Content-Type': 'text/plain',
       });
+      res.sendStatus(400);
       return 'missing args';
     }
 
@@ -59,6 +64,7 @@ export class AppService {
       res?.set({
         'Content-Type': 'text/plain',
       });
+      res.sendStatus(404);
       return 'model not found';
     }
 
