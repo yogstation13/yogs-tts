@@ -64,9 +64,9 @@ export class AppService {
       `${sanitized_model}${sanitized_message}${num_pitch}`,
     );
     // If the out file is in our cache, just grab it
-    if (fs.existsSync(`./piper_cache/${outFile}.wav`)) {
+    if (fs.existsSync(`./piper_cache/${outFile}-f.wav`)) {
       const file = fs.createReadStream(
-        join(process.cwd(), `./piper_cache/${outFile}.wav`),
+        join(process.cwd(), `./piper_cache/${outFile}-f.wav`),
       );
       res?.set({
         'Content-Type': 'audio/wav',
