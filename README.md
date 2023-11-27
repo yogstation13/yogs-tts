@@ -12,8 +12,10 @@ Exposes on port 8133
 
 ## API usage:
 
-`/tts?model={desired_model}&message={message}`
+`/tts?model={desired_model}&pitch={multiplier}`
+
+Message should be in JSON body `{message: "Hello, world!"}`
 
 Models can be found in `./piper-voices` and should be queried as `country-name` i.e. `GB-alba`
 
-Example usage: `/tts?model=US-joe&message=Hello, world!`
+Example usage: `/tts?model=US-joe&pitch=1`
