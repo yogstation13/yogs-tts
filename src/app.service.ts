@@ -90,7 +90,7 @@ export class AppService {
         `ffmpeg -i ./piper_cache/${outFile}.wav -af asetrate=${modelRate}*${num_pitch},aresample=${modelRate},atempo=1/${num_pitch} ./piper_cache/${outFile}-f.wav`,
       );
       fs.unlinkSync(`./piper_cache/${outFile}.wav`);
-      setTimeout(() => fs.unlinkSync(`./piper_cache/${outFile}-f.wav`), 120000); // Cached for 2 minutes
+      setTimeout(() => fs.unlinkSync(`./piper_cache/${outFile}-f.wav`), 10000); // Cached for 10 seconds
       const file = fs.createReadStream(
         join(process.cwd(), `./piper_cache/${outFile}-f.wav`),
       );
