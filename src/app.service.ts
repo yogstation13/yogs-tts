@@ -35,8 +35,11 @@ export class AppService {
       .replace(and_regex, 'and')
       .replace(cmd_regex, '');
     const sanitized_model: string = model.replace(cmd_regex, '');
-    const sanitized_pitch: number = parseInt(pitch.replace(cmd_regex, ''));
-    const num_pitch: number = isNaN(sanitized_pitch) ? 1 : sanitized_pitch;
+    const sanitized_pitch: number = parseFloat(pitch.replace(cmd_regex, ''));
+    const num_pitch: number = Math.min(
+      Math.max(isNaN(sanitized_pitch) ? 1 : sanitized_pitch, 0.1),
+      2,
+    );
 
     // Find the model from the model name
     let modelPath: string;
