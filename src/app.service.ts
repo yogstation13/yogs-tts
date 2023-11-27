@@ -22,7 +22,16 @@ export class AppService {
     pitch: string,
     body: ttsMessage,
     res?: Response,
+    auth?: string,
   ): Promise<StreamableFile | string> {
+    if (auth != process.env.TTS_AUTHORIZATION_TOKEN ?? 'mysecuretoken') {
+      res?.set({
+        'Content-Type': 'text/plain',
+      });
+      res.sendStatus(401);
+      return 'bad auth';
+    }
+
     if (model == null || body.message == null) {
       res?.set({
         'Content-Type': 'text/plain',

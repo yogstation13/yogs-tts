@@ -4,6 +4,7 @@ import {
   Query,
   Res,
   StreamableFile,
+  Headers,
   Body,
 } from '@nestjs/common';
 import type { Response } from 'express';
@@ -25,7 +26,8 @@ export class AppController {
     @Query('pitch') pitch: string,
     @Body() body: ttsMessage,
     @Res({ passthrough: true }) response?: Response,
+    @Headers('Authorization') auth?: string,
   ): Promise<StreamableFile | string> {
-    return await this.appService.getTTS(model, pitch, body, response);
+    return await this.appService.getTTS(model, pitch, body, response, auth);
   }
 }
