@@ -37,7 +37,7 @@ export class AppService {
     const sanitized_model: string = model.replace(cmd_regex, '');
     const sanitized_pitch: number = parseFloat(pitch.replace(cmd_regex, ''));
     const num_pitch: number = Math.min(
-      Math.max(isNaN(sanitized_pitch) ? 1 : sanitized_pitch, 0.1),
+      Math.max(isNaN(sanitized_pitch) ? 1 : sanitized_pitch, 0.5),
       2,
     );
 
