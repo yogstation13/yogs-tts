@@ -1,6 +1,7 @@
 import {
   Controller,
   Get,
+  Post,
   Query,
   Res,
   StreamableFile,
@@ -9,7 +10,7 @@ import {
 } from '@nestjs/common';
 import type { Response } from 'express';
 import { AppService } from './app.service';
-import type ttsMessage from './tts_message';
+import type { ttsMessage } from './tts_message';
 
 @Controller()
 export class AppController {
@@ -18,6 +19,11 @@ export class AppController {
   @Get('/ping')
   getPing(): string {
     return this.appService.getPing();
+  }
+
+  @Post('/tts_clear_cache')
+  clearTTSCache(): void {
+    return this.appService.clearTTSCache();
   }
 
   @Get('/tts')

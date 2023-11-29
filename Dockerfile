@@ -45,6 +45,7 @@ COPY . .
 
 RUN apt-get install -y cmake
 
+# Compile piper-src
 WORKDIR ./piper-src
 
 RUN make
@@ -143,6 +144,7 @@ COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app/dist/ ./dist/
 COPY --from=build /usr/src/app/piper-src/install/ ./piper/
 COPY --from=build /usr/src/app/piper-voices/ ./piper-voices/
+COPY --from=build /usr/src/app/sfx/ ./sfx/
 
 # Expose the port that the application listens on.
 EXPOSE 8133
