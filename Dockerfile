@@ -10,8 +10,8 @@ ARG NODE_VERSION=20.9.0
 # Use node image for base image for all stages.
 FROM node:${NODE_VERSION}-bullseye as base
 
-RUN apt-get update
-RUN apt-get upgrade
+RUN apt-get -y update
+RUN apt-get -y upgrade
 
 # Set working directory for all build stages.
 WORKDIR /usr/src/app
