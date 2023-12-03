@@ -43,11 +43,8 @@ export class AppService {
     pitch = pitch || '1';
 
     // Sanitize
-    const and_regex = /&/g;
     const cmd_regex = /^a-zA-Z0-9,._+:@%\/\- /g;
-    const sanitized_message: string = body.message
-      .replace(and_regex, 'and')
-      .replace(cmd_regex, '');
+    const sanitized_message: string = body.message; // Does not need sanitization- It is going into a JSON file
     const sanitized_model: string = model.replace(cmd_regex, '');
     const sanitized_pitch: number = parseFloat(pitch.replace(cmd_regex, ''));
     const num_pitch: number = Math.min(
@@ -96,12 +93,19 @@ export class AppService {
       return new StreamableFile(file);
     }
 
+    fs.writeFileSync(
+      `./piper_cache/${outFile}.json`,
+      JSON.stringify({ text: sanitized_message }),
+      'utf8',
+    );
+
     // Generate TTS out file
     const { stdout, stderr } = await execPromise(
-      `echo '${sanitized_message}' | \
+      `cat ./piper_cache/${outFile}.json | \
       ./piper/piper \
       --model ${modelPath} \
-      --output_file ./piper_cache/${outFile}.wav`,
+      --output_file ./piper_cache/${outFile}.wav \
+      --json-input`,
     );
 
     // Send out file if it exists
