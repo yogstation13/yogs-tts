@@ -43,7 +43,7 @@ export class AppService {
     pitch = pitch || '1';
 
     // Sanitize
-    const cmd_regex = /^a-zA-Z0-9,._+:@%\/\- /g;
+    const cmd_regex = /[^a-zA-Z0-9,._+:@%\/\- ]/g;
     const sanitized_message: string = body.message; // Does not need sanitization- It is going into a JSON file
     const sanitized_model: string = model.replace(cmd_regex, '');
     const sanitized_pitch: number = parseFloat(pitch.replace(cmd_regex, ''));
