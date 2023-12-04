@@ -14,6 +14,8 @@ For additional voices or model training tutorial, please see the piper repo link
 
 ## Compiling
 
+You will require [Docker](https://www.docker.com/)
+
 To compile & start the server, run `docker compose up --build`
 
 Exposes on port 8133
