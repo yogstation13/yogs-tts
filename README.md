@@ -1,4 +1,4 @@
-# yog-tts
+<p align="center"><img src='repo-assets/piper13.png' alt='Piper logo with SS13 logo' height=250></p>
 
 Written for [Yogstation13](https://github.com/yogstation13)
 
