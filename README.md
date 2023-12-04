@@ -12,7 +12,7 @@ Piper voice models are individually licensed, please see `MODEL_CARD` under each
 
 For additional voices or model training tutorial, please see the piper repo linked above.
 
-## Compiling
+## Compiling & Testing
 
 You will require [Docker](https://www.docker.com/)
 
