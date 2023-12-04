@@ -1,6 +1,6 @@
 # yog-tts
 
-Written (originally) by ynot01 for [Yogstation13](https://github.com/yogstation13)
+Written for [Yogstation13](https://github.com/yogstation13)
 
 Written in [nestjs](https://github.com/nestjs/nest)
 
