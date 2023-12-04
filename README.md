@@ -8,10 +8,6 @@ Uses [piper](https://github.com/rhasspy/piper), which can be found in `./piper-s
 
 #
 
-`./piper-src` has been modified to point at [ynot01/piper-phonemize](https://github.com/ynot01/piper-phonemize) which points at a [specific rhasspy/espeak-ng commit](https://github.com/rhasspy/espeak-ng/commit/0f65aa301e0d6bae5e172cc74197d32a6182200f) to combat breaking changes upstream affecting this repo.
-
-#
-
 Piper voice models are individually licensed, please see `MODEL_CARD` under each voice folder (located in `./piper-voices`) to view attributions and licensing.
 
 [For additional voices see here.](https://huggingface.co/rhasspy/piper-voices/) 
