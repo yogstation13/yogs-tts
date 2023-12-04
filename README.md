@@ -12,6 +12,8 @@ Piper voice models are individually licensed, please see `MODEL_CARD` under each
 
 For additional voices or model training tutorial, please see the piper repo linked above.
 
+## Compiling
+
 To compile & start the server, run `docker compose up --build`
 
 Exposes on port 8133
