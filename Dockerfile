@@ -72,7 +72,6 @@ RUN chmod g+rw ./piper_cache/
 
 # Compile and install fresh ffmpeg from sources:
 # See: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
-RUN sed -i -e's/ main/ main contrib non-free/g' /etc/apt/sources.list
 RUN apt-get update -qq && apt-get -y install \
       autoconf \
       automake \
@@ -95,13 +94,10 @@ RUN apt-get update -qq && apt-get -y install \
       zlib1g-dev \
       nasm \
       yasm \
-      libx265-dev \
       libnuma-dev \
       libvpx-dev \
       libmp3lame-dev \
       libopus-dev \
-      libx264-dev \
-      libfdk-aac-dev
 RUN mkdir -p ~/ffmpeg_sources ~/bin && cd ~/ffmpeg_sources && \
     wget -O ffmpeg-6.1.tar.bz2 https://ffmpeg.org/releases/ffmpeg-6.1.tar.bz2 && \
     tar xjvf ffmpeg-6.1.tar.bz2 && \
@@ -113,15 +109,12 @@ RUN mkdir -p ~/ffmpeg_sources ~/bin && cd ~/ffmpeg_sources && \
       --extra-ldflags="-L$HOME/ffmpeg_build/lib" \
       --extra-libs="-lpthread -lm" \
       --bindir="$HOME/bin" \
-      --enable-libfdk-aac \
       --enable-libass \
       --enable-libfreetype \
       --enable-libmp3lame \
       --enable-libopus \
       --enable-libvorbis \
-      --enable-libvpx \
-      --enable-libx264 \
-      --enable-libx265  && \
+      --enable-libvpx && \
     PATH="$HOME/bin:$PATH" make -j8 && \
     make install -j8 && \
     hash -r
