@@ -72,7 +72,7 @@ RUN chmod g+rw ./piper_cache/
 
 # Compile and install fresh FFmpeg from sources:
 # See: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
-RUN sudo apt-get update -qq && sudo apt-get -y install \
+RUN apt-get update -qq && apt-get -y install \
     autoconf \
     automake \
     build-essential \
@@ -97,7 +97,7 @@ RUN sudo apt-get update -qq && sudo apt-get -y install \
     wget \
     yasm \
     zlib1g-dev
-RUN sudo apt install libunistring-dev libaom-dev libdav1d-dev -y
+RUN apt install libunistring-dev libaom-dev libdav1d-dev -y
 RUN mkdir -p ~/ffmpeg_sources ~/bin
 RUN cd ~/ffmpeg_sources && \
     wget https://www.nasm.us/pub/nasm/releasebuilds/2.16.01/nasm-2.16.01.tar.bz2 && \
