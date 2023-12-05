@@ -72,54 +72,41 @@ RUN chmod g+rw ./piper_cache/
 
 # Compile and install fresh FFmpeg from sources:
 # See: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
-RUN sed -i -e's/ main/ main contrib non-free/g' /etc/apt/sources.list
-RUN apt-get update -qq && apt-get -y install \
-      autoconf \
-      automake \
-      build-essential \
-      cmake \
-      git-core \
-      libass-dev \
-      libfreetype6-dev \
-      libsdl2-dev \
-      libtool \
-      libva-dev \
-      libvdpau-dev \
-      libvorbis-dev \
-      libxcb1-dev \
-      libxcb-shm0-dev \
-      libxcb-xfixes0-dev \
-      pkg-config \
-      texinfo \
-      wget \
-      zlib1g-dev \
-      nasm \
-      yasm \
-      libnuma-dev \
-      libvpx-dev \
-      libmp3lame-dev \
-      libopus-dev \
-RUN mkdir -p ~/ffmpeg_sources ~/bin && cd ~/ffmpeg_sources && \
-    wget -O ffmpeg-6.1.tar.bz2 https://ffmpeg.org/releases/ffmpeg-6.1.tar.bz2 && \
-    tar xjvf ffmpeg-6.1.tar.bz2 && \
-    cd ffmpeg-6.1 && \
-    PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
-      --prefix="$HOME/ffmpeg_build" \
-      --pkg-config-flags="--static" \
-      --extra-cflags="-I$HOME/ffmpeg_build/include" \
-      --extra-ldflags="-L$HOME/ffmpeg_build/lib" \
-      --extra-libs="-lpthread -lm" \
-      --bindir="$HOME/bin" \
-      --enable-libass \
-      --enable-libfreetype \
-      --enable-libmp3lame \
-      --enable-libopus \
-      --enable-libvorbis \
-      --enable-libvpx && \
-    PATH="$HOME/bin:$PATH" make -j8 && \
-    make install -j8 && \
-    hash -r
-RUN mv ~/bin/ffmpeg /usr/local/bin && mv ~/bin/ffprobe /usr/local/bin && mv ~/bin/ffplay /usr/local/bin
+RUN sudo apt-get update -qq && sudo apt-get -y install \
+    autoconf \
+    automake \
+    build-essential \
+    cmake \
+    git-core \
+    libass-dev \
+    libfreetype6-dev \
+    libgnutls28-dev \
+    libmp3lame-dev \
+    libsdl2-dev \
+    libtool \
+    libva-dev \
+    libvdpau-dev \
+    libvorbis-dev \
+    libxcb1-dev \
+    libxcb-shm0-dev \
+    libxcb-xfixes0-dev \
+    meson \
+    ninja-build \
+    pkg-config \
+    texinfo \
+    wget \
+    yasm \
+    zlib1g-dev
+RUN sudo apt install libunistring-dev libaom-dev libdav1d-dev -y
+RUN mkdir -p ~/ffmpeg_sources ~/bin
+RUN cd ~/ffmpeg_sources && \
+    wget https://www.nasm.us/pub/nasm/releasebuilds/2.16.01/nasm-2.16.01.tar.bz2 && \
+    tar xjvf nasm-2.16.01.tar.bz2 && \
+    cd nasm-2.16.01 && \
+    ./autogen.sh && \
+    PATH="$HOME/bin:$PATH" ./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin" && \
+    make && \
+    make install
 
 # Use production node environment by default.
 ENV NODE_ENV production
