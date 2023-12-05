@@ -114,7 +114,6 @@ RUN mkdir -p ~/ffmpeg_sources ~/bin && cd ~/ffmpeg_sources && \
       --extra-libs="-lpthread -lm" \
       --bindir="$HOME/bin" \
       --enable-libfdk-aac \
-      --enable-gpl \
       --enable-libass \
       --enable-libfreetype \
       --enable-libmp3lame \
@@ -122,8 +121,7 @@ RUN mkdir -p ~/ffmpeg_sources ~/bin && cd ~/ffmpeg_sources && \
       --enable-libvorbis \
       --enable-libvpx \
       --enable-libx264 \
-      --enable-libx265 \
-      --enable-nonfree && \
+      --enable-libx265  && \
     PATH="$HOME/bin:$PATH" make -j8 && \
     make install -j8 && \
     hash -r
