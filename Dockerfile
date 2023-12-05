@@ -72,6 +72,7 @@ RUN chmod g+rw ./piper_cache/
 
 # Compile and install fresh ffmpeg from sources:
 # See: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
+RUN sed -i -e's/ main/ main contrib non-free/g' /etc/apt/sources.list
 RUN apt-get update -qq && apt-get -y install \
       autoconf \
       automake \
@@ -98,7 +99,7 @@ RUN apt-get update -qq && apt-get -y install \
       libvpx-dev \
       libmp3lame-dev \
       libopus-dev \
-RUN mkdir ~/ffmpeg_sources ~/bin && cd ~/ffmpeg_sources && \
+RUN mkdir -p ~/ffmpeg_sources ~/bin && cd ~/ffmpeg_sources && \
     wget -O ffmpeg-6.1.tar.bz2 https://ffmpeg.org/releases/ffmpeg-6.1.tar.bz2 && \
     tar xjvf ffmpeg-6.1.tar.bz2 && \
     cd ffmpeg-6.1 && \
