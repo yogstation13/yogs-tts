@@ -98,7 +98,7 @@ RUN apt-get update -qq && apt-get -y install \
       libvpx-dev \
       libmp3lame-dev \
       libopus-dev \
-RUN mkdir -p ~/ffmpeg_sources ~/bin && cd ~/ffmpeg_sources && \
+RUN mkdir ~/ffmpeg_sources ~/bin && cd ~/ffmpeg_sources && \
     wget -O ffmpeg-6.1.tar.bz2 https://ffmpeg.org/releases/ffmpeg-6.1.tar.bz2 && \
     tar xjvf ffmpeg-6.1.tar.bz2 && \
     cd ffmpeg-6.1 && \
