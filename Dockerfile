@@ -70,7 +70,7 @@ RUN usermod -a -G cachecontrol node
 RUN chgrp cachecontrol ./piper_cache/
 RUN chmod g+rw ./piper_cache/
 
-# Compile and install fresh ffmpeg from sources:
+# Compile and install fresh FFmpeg from sources:
 # See: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
 RUN sed -i -e's/ main/ main contrib non-free/g' /etc/apt/sources.list
 RUN apt-get update -qq && apt-get -y install \
