@@ -1,5 +1,9 @@
 <p align="center"><img src='repo-assets/piper13.png' alt='Piper logo with SS13 logo' height=250></p>
 
+# This project is archived as of August 13th, 2024. As of the date specified it is still functional, although it requires changes on your end. 
+See https://github.com/yogstation13/Yogstation/pull/21008 for the way it was implemented on Yogstation13.
+
+#
 Written for [Yogstation13](https://github.com/yogstation13)
 
 Written in [nestjs](https://github.com/nestjs/nest)
